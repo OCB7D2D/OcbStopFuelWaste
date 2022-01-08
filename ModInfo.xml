@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="OcbStopFuelWaste" />
+		<Description value="Automatically stop buring fuel when production or melting is finished." />
+		<Website value="https://github.com/OCB7D2D/OcbStopFuelWaste" />
+		<Author value="ocbMaurice" />
+		<Version value="0.1.0" compat="A20"/>
+	</ModInfo>
+</xml>
