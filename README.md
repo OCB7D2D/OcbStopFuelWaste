@@ -1,9 +1,9 @@
 # OCB Stop Fuel Waste Mod - 7 Days to Die (A20) Addon
 
-A small harmony mod to stop fuel waste in workstations, campfires and
-chemical stations. Will stop burning when production or melting is
-finished. You can still use the station to only produce heat if you
-enable the station with nothing to melt or produce in it.
+A small harmony mod to stop fuel waste in forges, campfires and
+chemical stations. Will stop burning fuel when production or melting
+is finished. You can still use the station to only produce heat if
+you enable the station with nothing to melt or produce in it.
 
 This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
