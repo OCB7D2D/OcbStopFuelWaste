@@ -96,7 +96,7 @@ public class StopFuelWaste : IModApi
         {
             if (__state == false) return;
             if (HasWork(___craftingQueue, ___inputWindow)) return;
-            ___fuelWindow.TurnOff();
+            if (___fuelWindow != null) ___fuelWindow.TurnOff();
         }
 
     }

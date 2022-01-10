@@ -9,6 +9,10 @@ This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
 ## Changelog
 
+### Version 0.1.1
+
+- Fix issue with stations not having any fuel
+
 ### Version 0.1.0
 
 - Initial version
