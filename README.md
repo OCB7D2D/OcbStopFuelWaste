@@ -9,6 +9,11 @@ This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
 ## Changelog
 
+### Version 0.2.0
+
+- Fix issue when workstation tiles are unloaded/loaded
+  Should now correctly preserve fuel for big time delta steps
+
 ### Version 0.1.1
 
 - Fix issue with stations not having any fuel
