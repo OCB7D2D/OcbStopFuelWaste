@@ -155,12 +155,10 @@ public class StopFuelWaste : IModApi
             ItemStack[] ___input,
             bool __state)
         {
-            Log.Out("Postfix");
             if (__state == false) return;
             if (!__instance.IsBurning) return;
             if (HasWork(__instance, ___queue, ___input)) return;
             __instance.IsBurning = false;
-            Log.Out("Turn it off now");
         }
 
     }
