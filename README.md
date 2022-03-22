@@ -9,6 +9,10 @@ This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
 ## Changelog
 
+### Version 0.2.2
+
+- Add a few more null pointer checks
+
 ### Version 0.2.1
 
 - Remove debug statements (stops spamming the log)

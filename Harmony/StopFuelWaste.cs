@@ -20,8 +20,10 @@ public class StopFuelWaste : IModApi
         static float GetAllRecipeTimes(TileEntityWorkstation __instance)
         {
             float crafting = 0;
+            if (__instance.Queue == null) return crafting;
             foreach (RecipeQueueItem recipe in __instance.Queue)
             {
+                if (recipe == null) continue;
                 if (recipe.Multiplier > 1)
                 {
                     crafting += recipe.OneItemCraftTime * (recipe.Multiplier - 1f);

@@ -5,6 +5,6 @@
 		<Description value="Automatically stop burning fuel when production or melting is finished." />
 		<Website value="https://github.com/OCB7D2D/OcbStopFuelWaste" />
 		<Author value="ocbMaurice" />
-		<Version value="0.2.1" compat="A20"/>
+		<Version value="0.2.2" compat="A20"/>
 	</ModInfo>
 </xml>
