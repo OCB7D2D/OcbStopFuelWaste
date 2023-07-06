@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xml>
-	<ModInfo>
-		<Name value="OcbStopFuelWaste" />
-		<Description value="Automatically stop burning fuel when production or melting is finished." />
-		<Website value="https://github.com/OCB7D2D/OcbStopFuelWaste" />
-		<Author value="ocbMaurice" />
-		<Version value="1.0.0" compat="A21"/>
-	</ModInfo>
+	<Name value="OcbStopFuelWaste" />
+	<DisplayName value="OCB Stop Fuel Waste" />
+	<Description value="Automatically stop burning fuel when production or melting is finished." />
+	<Website value="https://github.com/OCB7D2D/OcbStopFuelWaste" />
+	<Author value="ocbMaurice" />
+	<Version value="1.0.1" />
 </xml>

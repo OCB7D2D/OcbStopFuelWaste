@@ -1,4 +1,4 @@
-# OCB Stop Fuel Waste Mod - 7 Days to Die (A20) Addon
+# OCB Stop Fuel Waste Mod - 7 Days to Die (A21) Addon
 
 A small harmony mod to stop fuel waste in forges, campfires and
 chemical stations. Will stop burning fuel when production or melting
@@ -7,7 +7,19 @@ you enable the station with nothing to melt or produce in it.
 
 This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
+[![GitHub CI Compile Status][3]][2]
+
+## Download and Install
+
+Simply [download here from GitHub][1] and put into your A21 Mods folder:
+
+- https://github.com/OCB7D2D/OcbStopFuelWaste/archive/master.zip (master branch)
+
 ## Changelog
+
+### Version 1.0.1
+
+- Update ModInfo.xml to A21 version
 
 ### Version 1.0.0
 
@@ -37,6 +49,8 @@ This mod is not EAC (Easy Anti-Cheat) compatible, so turn it off!
 
 ## Compatibility
 
-I've developed and tested this Mod against version a20.b218.
+Developed initially for version A20(b218), updated through A21.0(b324).
 
-[1]: https://github.com/OCB7D2D/A20BepInExPreloader
+[1]: https://github.com/OCB7D2D/OcbStopFuelWaste/releases
+[2]: https://github.com/OCB7D2D/OcbStopFuelWaste/actions/workflows/ci.yml
+[3]: https://github.com/OCB7D2D/OcbStopFuelWaste/actions/workflows/ci.yml/badge.svg

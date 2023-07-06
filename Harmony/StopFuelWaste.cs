@@ -6,6 +6,9 @@ using System.Reflection;
 public class StopFuelWaste : IModApi
 {
 
+    // ####################################################################
+    // ####################################################################
+
     public void InitMod(Mod mod)
     {
         Log.Out("OCB Harmony Patch: " + GetType().ToString());
@@ -13,8 +16,10 @@ public class StopFuelWaste : IModApi
         harmony.PatchAll(Assembly.GetExecutingAssembly());
     }
 
-    [HarmonyPatch(typeof(TileEntityWorkstation))]
-    [HarmonyPatch("HandleFuel")]
+    // ####################################################################
+    // ####################################################################
+
+    [HarmonyPatch(typeof(TileEntityWorkstation), "HandleFuel")]
     public class TileEntityWorkstation_HandleFuel
     {
         static float GetAllRecipeTimes(TileEntityWorkstation __instance)
@@ -121,8 +126,10 @@ public class StopFuelWaste : IModApi
         }
     }
 
-    [HarmonyPatch(typeof(TileEntityWorkstation))]
-    [HarmonyPatch("UpdateTick")]
+    // ####################################################################
+    // ####################################################################
+
+    [HarmonyPatch(typeof(TileEntityWorkstation), "UpdateTick")]
     public class TileEntityWorkstation_UpdateTick
     {
 
@@ -165,8 +172,10 @@ public class StopFuelWaste : IModApi
 
     }
 
-    [HarmonyPatch(typeof(XUiC_WorkstationWindowGroup))]
-    [HarmonyPatch("Update")]
+    // ####################################################################
+    // ####################################################################
+
+    [HarmonyPatch(typeof(XUiC_WorkstationWindowGroup), "Update")]
     public class XUiC_WorkstationFuelGrid_Update
     {
 
@@ -211,5 +220,8 @@ public class StopFuelWaste : IModApi
         }
 
     }
+
+    // ####################################################################
+    // ####################################################################
 
 }
