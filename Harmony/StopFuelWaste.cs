@@ -188,8 +188,8 @@ public class StopFuelWaste : IModApi
             }
             // Not every station has input
             if (inputWindow == null) return false;
-            XUiC_WorkstationMaterialInputGrid matInput = inputWindow.WindowGroup
-                .Controller.GetChildByType<XUiC_WorkstationMaterialInputGrid>();
+            XUiC_ItemStackGrid matInput = inputWindow.WindowGroup
+                .Controller.GetChildByType<XUiC_ItemStackGrid>();
             int count = matInput.GetItemStackControllers().Length;
             var slots = inputWindow.GetSlots();
             for (int i = 0; i < count; i += 1)
