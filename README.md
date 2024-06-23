@@ -17,6 +17,11 @@ Simply [download here from GitHub][1] and put into your A21 Mods folder:
 
 ## Changelog
 
+### Version 1.0.3
+
+- Fix issue with Afterlife Overhaul Mod
+- Prevent error for "bad" custom workbenches
+
 ### Version 1.0.2
 
 - Optimize for A21.2(b14) compatibility

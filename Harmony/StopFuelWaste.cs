@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Reflection;
 
 #pragma warning disable IDE0051 // Remove unused private members
@@ -141,7 +142,10 @@ public class StopFuelWaste : IModApi
             {
                 if (item.IsCrafting) return true;
             }
-            for (int i = 0; i < station.InputSlotCount; i += 1)
+            // Ensure to not go over boundary
+            // In case workstation is misconfigured
+            // May happen with custom workbench classes
+            for (int i = 0; i < Math.Min(input.Length, station.InputSlotCount); i += 1)
             {
                 if (!input[i].IsEmpty()) return true;
             }
@@ -192,7 +196,7 @@ public class StopFuelWaste : IModApi
                 .Controller.GetChildByType<XUiC_ItemStackGrid>();
             int count = matInput.GetItemStackControllers().Length;
             var slots = inputWindow.GetSlots();
-            for (int i = 0; i < count; i += 1)
+            for (int i = 0; i < System.Math.Min(slots.Length, count); i += 1)
             {
                 if (!slots[i].IsEmpty()) return true;
             }
@@ -213,10 +217,7 @@ public class StopFuelWaste : IModApi
         {
             if (__state == false) return;
             if (HasWork(___craftingQueue, ___inputWindow)) return;
-            if (___fuelWindow != null)
-            {
-                ___fuelWindow.TurnOff();
-            }
+            ___fuelWindow?.TurnOff();
         }
 
     }
