@@ -73,7 +73,7 @@ public class StopFuelWaste : IModApi
                             __instance.Tools[n].itemValue.ModifyValue(null, null,
                                 PassiveEffects.CraftingSmeltTime,
                                 ref smeltOneTime, ref modifier,
-                                FastTags.Parse(item.Name));
+                                FastTags<TagGroup.Global>.Parse(item.Name));
                             smeltOneTime *= modifier;
                         }
                     }
