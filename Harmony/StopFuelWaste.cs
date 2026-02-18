@@ -23,6 +23,11 @@ public class StopFuelWaste : IModApi
     [HarmonyPatch(typeof(TileEntityWorkstation), "HandleFuel")]
     public class TileEntityWorkstation_HandleFuel
     {
+        // Defensive module indexes for workstation arrays.
+        // Index mapping may differ on some heavily modded stations.
+        private const int ToolModuleIndex = 0;
+        private const int SmeltingModuleIndex = 4;
+
         static float GetAllRecipeTimes(TileEntityWorkstation __instance)
         {
             float crafting = 0;
@@ -30,6 +35,7 @@ public class StopFuelWaste : IModApi
             foreach (RecipeQueueItem recipe in __instance.Queue)
             {
                 if (recipe == null) continue;
+                if (recipe.Multiplier <= 0 && recipe.CraftingTimeLeft <= 0f) continue;
                 if (recipe.Multiplier > 1)
                 {
                     crafting += recipe.OneItemCraftTime * (recipe.Multiplier - 1f);
@@ -59,16 +65,21 @@ public class StopFuelWaste : IModApi
             float timeLeft,
             ItemStack stack)
         {
+            if (stack.IsEmpty()) return 0f;
             if (ItemClass.GetForId(stack.itemValue.type) is ItemClass item)
             {
                 if (CanSmeltStackItemHere(__instance, item))
                 {
                     float smeltOneTime = item.GetWeight() * (item.MeltTimePerUnit > 0.0 ? item.MeltTimePerUnit : 1f);
                     // Do we support tools?
-                    if (___isModuleUsed[0])
+                    if (___isModuleUsed != null &&
+                        ___isModuleUsed.Length > ToolModuleIndex &&
+                        ___isModuleUsed[ToolModuleIndex] &&
+                        __instance.Tools != null)
                     {
                         for (int n = 0; n < __instance.Tools.Length; ++n)
                         {
+                            if (__instance.Tools[n].IsEmpty()) continue;
                             float modifier = 1f;
                             __instance.Tools[n].itemValue.ModifyValue(null, null,
                                 PassiveEffects.CraftingSmeltTime,
@@ -101,12 +112,20 @@ public class StopFuelWaste : IModApi
             ref float _timePassed)
         {
             float smelting = 0f;
+            if (__instance == null) return;
+            if (_timePassed <= 0f) return;
+            if (__instance.Input == null || ___currentMeltTimesLeft == null) return;
             // Only check irregular deltas
             if (_timePassed < 10f) return;
             // Check if smelting is used
-            if (___isModuleUsed[4])
+            if (___isModuleUsed != null &&
+                ___isModuleUsed.Length > SmeltingModuleIndex &&
+                ___isModuleUsed[SmeltingModuleIndex])
             {
-                for (int i = 0; i < __instance.InputSlotCount; i += 1)
+                int limit = Math.Min(
+                    __instance.InputSlotCount,
+                    Math.Min(__instance.Input.Length, ___currentMeltTimesLeft.Length));
+                for (int i = 0; i < limit; i += 1)
                 {
                     smelting = System.Math.Max(
                         GetItemStackSmeltingTime(
@@ -138,16 +157,29 @@ public class StopFuelWaste : IModApi
             RecipeQueueItem[] queue,
             ItemStack[] input)
         {
-            foreach (var item in queue)
+            if (station == null) return false;
+            if (queue != null) foreach (var item in queue)
             {
+                if (item == null) continue;
                 if (item.IsCrafting) return true;
+                if (item.Multiplier > 0 && item.CraftingTimeLeft > 0f) return true;
             }
+            if (input == null) return false;
             // Ensure to not go over boundary
             // In case workstation is misconfigured
             // May happen with custom workbench classes
             for (int i = 0; i < Math.Min(input.Length, station.InputSlotCount); i += 1)
             {
-                if (!input[i].IsEmpty()) return true;
+                if (input[i].IsEmpty()) continue;
+                if (ItemClass.GetForId(input[i].itemValue.type) is ItemClass item &&
+                    item.MadeOfMaterial.ForgeCategory is string category &&
+                    station.MaterialNames != null)
+                {
+                    foreach (string name in station.MaterialNames)
+                    {
+                        if (category.EqualsCaseInsensitive(name)) return true;
+                    }
+                }
             }
             return false;
         }
